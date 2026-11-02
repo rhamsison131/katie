@@ -219,8 +219,8 @@ const PHOTOS = [
   { src: "photos/img1.jpg", caption: "Us" },
   { src: "photos/img4.jpg", caption: "My favorite day" },
   { src: "photos/img2.jpg", caption: "Always you" },
-{ src: "photos/img5.jpg", caption: "Sea wall with you" },
-    { src: "photos/img6.jpg", caption: "First Date" },
+  { src: "photos/img5.jpg", caption: "Sea wall with you" },
+  { src: "photos/img6.jpg", caption: "First Date" }
 ];
 /* Accepted answers (both month/day and day/month readings, as yyyy-mm-dd) */
 const ANSWERS = {
@@ -340,7 +340,8 @@ document.addEventListener("keydown", e => {
   if (e.key === "ArrowLeft") showPhoto(gi - 1);
 });
 
-store.get().unlocked ? showCard(false) : showGate();
+/* Always ask for the birthdays first, on every visit */
+showGate();
 </script>
 </body>
 </html>
