@@ -197,7 +197,7 @@ button:focus-visible{outline:3px solid var(--forest);outline-offset:3px}
   <div class="g-stage">
     <button class="g-nav" id="g-prev" type="button" aria-label="Previous photo">&#10094;</button>
     <figure class="g-frame" id="g-frame">
-      <img id="g-img" alt="">
+      <img id="g-img" alt="" decoding="async">
       <div class="g-missing"><svg viewBox="0 0 64 64" width="56" aria-hidden="true"><path d="M32 56C10 40 14 20 25 22c4 1 7 5 7 5s3-4 7-5c11-2 15 18-7 34z" fill="#3f7a58"/></svg><p>Photo not found.<br>Add it to the photos folder.</p></div>
       <figcaption id="g-cap"></figcaption>
     </figure>
@@ -314,6 +314,7 @@ function showPhoto(i){
   const p = PHOTOS[gi];
   frame.classList.remove("missing");
   gimg.onerror = () => frame.classList.add("missing");
+  gimg.onload = () => { if (PHOTOS.length > 1) { const n = new Image(); n.src = PHOTOS[(gi + 1) % PHOTOS.length].src; } };
   gimg.src = p.src; gimg.alt = p.caption || "Photo " + (gi+1);
   $("g-cap").textContent = p.caption || "";
   [...$("g-dots").children].forEach((d,k) => d.classList.toggle("on", k === gi));
